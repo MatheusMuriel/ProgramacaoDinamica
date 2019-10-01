@@ -8,5 +8,5 @@ class Resultado():
         self.tempo_execucao = (self.tempo_final - self.tempo_inicial) / (10 ** 9)
 
     def __str__(self):
-        string_of_object = '{}({}) = {} :: => {} segundos'.format(self.algoritimo, self.n, self.resultado, self.tempo_execucao)
+        string_of_object = '{}({}) = {} :: => {:f} segundos'.format(self.algoritimo, self.n, self.resultado, self.tempo_execucao)
         return string_of_object

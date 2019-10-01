@@ -4,9 +4,10 @@ import time
 import fib_recursive
 import Resultado
 import Plotador
+import fib_rec_memorization
 
 argumentos = sys.argv
-algoritimos = ['Recursivo']
+algoritimos = ['Recursivo puro', 'Recursivo memorization']
 
 def pega_algoritmo():
     print('Escolha um algoritmo: ')
@@ -57,7 +58,7 @@ funcao = None
 if algoritimo == 0:
     funcao = fib_recursive.get_funcao()
 elif (algoritimo == 1):
-    pass
+    funcao = fib_rec_memorization.get_funcao()
 
 resultados = executa_algoritmo(algoritimos[algoritimo], funcao, inicio, fim)
 
@@ -67,7 +68,5 @@ for resultado in resultados:
 result_plot_x = list(map(lambda o: o.n, resultados))
 result_plot_y = list(map(lambda o: o.tempo_execucao, resultados))
 
-print(result_plot_x)
-print(result_plot_y)
-
-Plotador.plot(result_plot_x, result_plot_y)
+#if (len(resultados) > 1):
+    #Plotador.plot(result_plot_x, result_plot_y)
