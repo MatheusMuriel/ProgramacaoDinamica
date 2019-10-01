@@ -3,6 +3,7 @@ import datetime
 import time
 import fib_recursive
 import Resultado
+import Plotador
 
 argumentos = sys.argv
 algoritimos = ['Recursivo']
@@ -62,3 +63,11 @@ resultados = executa_algoritmo(algoritimos[algoritimo], funcao, inicio, fim)
 
 for resultado in resultados:
     print(resultado)
+
+result_plot_x = list(map(lambda o: o.n, resultados))
+result_plot_y = list(map(lambda o: o.tempo_execucao, resultados))
+
+print(result_plot_x)
+print(result_plot_y)
+
+Plotador.plot(result_plot_x, result_plot_y)
