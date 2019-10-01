@@ -1,5 +1,6 @@
 import sys
 import datetime
+import time
 import fib_recursive
 import Resultado
 
@@ -24,7 +25,7 @@ def executa_algoritmo(nome_algoritmo, funcao, n):
 
     tempo_final = datetime.datetime.now()
 
-    return Resultado.Resultado(tempo_final, tempo_final, nome_algoritmo, n, resultado)
+    return Resultado.Resultado(tempo_inicial, tempo_final, nome_algoritmo, n, resultado)
 
 
 algoritimo = int(argumentos[1]) if len(argumentos) >= 2 else pega_algoritmo()

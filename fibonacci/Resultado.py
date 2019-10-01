@@ -5,10 +5,8 @@ class Resultado():
         self.algoritimo = algoritimo
         self.n = n
         self.resultado = resultado
-        self.tempo_execucao = (self.tempo_final - self.tempo_inicial)
+        self.tempo_execucao = (self.tempo_final - self.tempo_inicial).total_seconds()
 
     def __str__(self):
-        print(self.tempo_inicial)
-        print(self.tempo_final)
-        string_of_object = '{}({}) = {} :: => {}segundos'.format(self.algoritimo, self.n, self.resultado, self.tempo_execucao)
+        string_of_object = '{}({}) = {} :: => {} segundos'.format(self.algoritimo, self.n, self.resultado, self.tempo_execucao)
         return string_of_object
