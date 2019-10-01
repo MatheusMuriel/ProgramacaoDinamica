@@ -26,47 +26,90 @@ def pega_tipo_teste():
     print('1 - Range')
     return int(input('> '))
 
-def executa_algoritmo(nome_algoritmo, funcao, inicio, fim):
+def executa_algoritmo(nome_algoritmo, funcao_calc, funcao_reset, inicio, fim):
     resultados = []
-
+    
+    funcao_calc(3)
+    funcao_reset()
+    
     for n in range(inicio, fim+1):
         tempo_inicial = time.process_time_ns()
 
-        resultado_funcao = funcao(n)
+        resultado_funcao = funcao_calc(n)
 
         tempo_final = time.process_time_ns()
 
         objeto_resultado = Resultado.Resultado(tempo_inicial, tempo_final, nome_algoritmo, n, resultado_funcao)
+
+        funcao_reset()
+
         resultados.append(objeto_resultado)
 
     return resultados
 
-algoritimo = int(argumentos[1]) if len(argumentos) >= 2 else pega_algoritmo()
-tipo_teste = int(argumentos[2]) if len(argumentos) >= 3 else pega_tipo_teste()
+if (argumentos[1] != 'auto'):
 
-inicio, fim = 0, 0
-if (tipo_teste == 0):
-    n = int(argumentos[3]) if len(argumentos) >= 4 else pega_numero()
-    inicio, fim = n, n
-elif (tipo_teste == 1):
-    #inicio = pega_numero(mensagem='Inicio')
-    inicio = int(argumentos[3]) if len(argumentos) >= 4 else pega_numero(mensagem='Inicio')
-    #fim = pega_numero(mensagem='Fim')
-    fim = int(argumentos[4]) if len(argumentos) >= 5 else pega_numero(mensagem='Fim')
+    memorization = fib_rec_memorization.Memorization()
 
-funcao = None
-if algoritimo == 0:
-    funcao = fib_recursive.get_funcao()
-elif (algoritimo == 1):
-    funcao = fib_rec_memorization.get_funcao()
+    algoritimo = int(argumentos[1]) if len(argumentos) >= 2 else pega_algoritmo()
+    tipo_teste = int(argumentos[2]) if len(argumentos) >= 3 else pega_tipo_teste()
 
-resultados = executa_algoritmo(algoritimos[algoritimo], funcao, inicio, fim)
+    inicio, fim = 0, 0
+    if (tipo_teste == 0):
+        n = int(argumentos[3]) if len(argumentos) >= 4 else pega_numero()
+        inicio, fim = n, n
+    elif (tipo_teste == 1):
+        #inicio = pega_numero(mensagem='Inicio')
+        inicio = int(argumentos[3]) if len(argumentos) >= 4 else pega_numero(mensagem='Inicio')
+        #fim = pega_numero(mensagem='Fim')
+        fim = int(argumentos[4]) if len(argumentos) >= 5 else pega_numero(mensagem='Fim')
 
-for resultado in resultados:
-    print(resultado)
+    funcao_calc = None
+    funcao_reset = None
+    if algoritimo == 0:
+        funcao_calc = fib_recursive.get_funcao_calc()
+        funcao_reset = fib_recursive.get_funcao_reset()
+    elif (algoritimo == 1):
+        funcao_calc = memorization.get_funcao_calc()
+        funcao_reset = memorization.get_funcao_reset()
 
-result_plot_x = list(map(lambda o: o.n, resultados))
-result_plot_y = list(map(lambda o: o.tempo_execucao, resultados))
+    resultados = executa_algoritmo(algoritimos[algoritimo], funcao_calc, funcao_reset, inicio, fim)
 
-#if (len(resultados) > 1):
-    #Plotador.plot(result_plot_x, result_plot_y)
+    for resultado in resultados:
+        print(resultado)
+
+    result_plot_x = list(map(lambda o: o.n, resultados))
+    result_plot_y = list(map(lambda o: o.get_tempo(), resultados))
+
+    if (len(resultados) > 1):
+        Plotador.plot_simples(result_plot_x, result_plot_y, algoritimos[algoritimo])
+
+else: 
+    
+    memorization = fib_rec_memorization.Memorization()
+
+    inicio = 22
+    fim = 32
+    
+    func_rec = fib_recursive.get_funcao_calc()
+    func_rec_reset = fib_recursive.get_funcao_reset()
+    func_memo = memorization.get_funcao_calc()
+    func_memo_reset = memorization.get_funcao_reset()
+
+    result_rec = executa_algoritmo(algoritimos[0], func_rec, func_rec_reset, inicio, fim)
+    result_memo = executa_algoritmo(algoritimos[1], func_memo, func_memo_reset, inicio, fim)
+
+    for i in range (0, len(result_memo)-1):
+        print(result_rec[i])
+        print(result_memo[i])
+
+    get_n = lambda o: o.n
+    get_tempo = lambda o: o.get_tempo()
+
+    result_plot_x1 = list(map(get_n, result_rec ))
+    result_plot_y1 = list(map(get_tempo, result_rec))
+
+    result_plot_x2 = list(map(get_n, result_memo))
+    result_plot_y2 = list(map(get_tempo, result_memo))
+
+    Plotador.plot_duplo(inicio, fim, result_plot_y2, 'Recursivo Puro', result_plot_y1, 'Memorization')
