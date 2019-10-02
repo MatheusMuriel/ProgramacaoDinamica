@@ -4,7 +4,8 @@ class Memorization():
     self.memoria = {}
 
   def calc(self, n):
-      if n <= 1: return 1
+      if n == 0: return 0
+      if n == 1: return 1
 
       n_1 = 0
       n_2 = 0

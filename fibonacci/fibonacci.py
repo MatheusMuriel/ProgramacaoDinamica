@@ -6,6 +6,8 @@ import Resultado
 import Plotador
 import fib_rec_memorization
 
+sys.setrecursionlimit(1000000000)
+
 argumentos = sys.argv
 algoritimos = ['Recursivo puro', 'Recursivo memorization']
 
@@ -81,15 +83,15 @@ if (argumentos[1] != 'auto'):
     result_plot_x = list(map(lambda o: o.n, resultados))
     result_plot_y = list(map(lambda o: o.get_tempo(), resultados))
 
-    if (len(resultados) > 1):
-        Plotador.plot_simples(result_plot_x, result_plot_y, algoritimos[algoritimo])
+    #if (len(resultados) > 1):
+        #Plotador.plot_simples(result_plot_x, result_plot_y, algoritimos[algoritimo])
 
 else: 
     
     memorization = fib_rec_memorization.Memorization()
 
     inicio = 22
-    fim = 32
+    fim = 40
     
     func_rec = fib_recursive.get_funcao_calc()
     func_rec_reset = fib_recursive.get_funcao_reset()
@@ -99,9 +101,9 @@ else:
     result_rec = executa_algoritmo(algoritimos[0], func_rec, func_rec_reset, inicio, fim)
     result_memo = executa_algoritmo(algoritimos[1], func_memo, func_memo_reset, inicio, fim)
 
-    for i in range (0, len(result_memo)-1):
-        print(result_rec[i])
-        print(result_memo[i])
+    #for i in range (0, len(result_memo)-1):
+        #print(result_rec[i])
+        #print(result_memo[i])
 
     get_n = lambda o: o.n
     get_tempo = lambda o: o.get_tempo()
