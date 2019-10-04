@@ -1,6 +1,6 @@
 import time
 
-import CLI
+from CommandLineInterface import Cli
 from Resultado import Resultado
 from fib_recursive import Fibonacci
 from fib_rec_memorization import Memorization
@@ -24,12 +24,12 @@ def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
 
 codigos = {
     'Recursivo puro': Fibonacci(), 
-    'Recursivo memorization': Memorization(), 
-    'Iterativo memorization': IterativoMemorization()
+    'Recursivo + Memoization': Memorization(), 
+    'Iterativo + Memoization': IterativoMemorization()
     }
 
 if __name__ == "__main__":
-    parametros_execucao = CLI.get_dados()
+    parametros_execucao = Cli().get_dados()
     algoritmo = parametros_execucao[0]
     inicio = int(parametros_execucao[1])
     fim = int(parametros_execucao[2])
