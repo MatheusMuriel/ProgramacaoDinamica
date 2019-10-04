@@ -13,7 +13,10 @@ perguntas_execucao = [
         'message': 'Qual tipo de execução deseja testar?',
         'choices': [
             'Valor unitario',
-            'Range de valores'
+            {
+                'name': 'Range de valores',
+                'disabled': 'Em desenvolvimento'
+            }
         ]
     },
     {
@@ -44,13 +47,13 @@ perguntas_teste_range = [
     }
 ]
 
-respostas_1 = prompt(perguntas_execucao)
+def get_dados():
+    respostas_1 = prompt(perguntas_execucao)
+    respostas_2 = prompt(perguntas_teste_unitario) if respostas_1['tipo_teste'] == 'Valor unitario' else prompt(perguntas_teste_range)
 
-respostas_2 = prompt(perguntas_teste_unitario) if respostas_1['tipo_teste'] == 'Valor unitario' else prompt(perguntas_teste_range)
+    ALGORITMO = respostas_1['algoritmo']
+    TIPO_TESTE = respostas_1['tipo_teste']
+    INICIO = respostas_2['inicio']
+    FIM = respostas_2['fim'] if 'fim' in respostas_2 else respostas_2['inicio'] 
 
-ALGORITMO = respostas_1['algoritmo']
-TIPO_TESTE = respostas_1['tipo_teste']
-INICIO = respostas_2['inicio']
-FIM = respostas_2['fim'] if 'fim' in respostas_2 else None
-
-print(ALGORITMO, TIPO_TESTE, INICIO, FIM)
+    return (ALGORITMO, INICIO, FIM)
