@@ -42,3 +42,10 @@ O benchmark interno do codigo contou 29.845317 segundos mas cronometrando o temp
 Ainda não se sabe se esse tempo foi devido ao tempo de execução do codigo ou a um travamento da maquina.
 
 Com isso ainda não foi possivel concluir o tempo de execução do processo
+
+
+
+
+# Bibliotecas usadas:
+- MatplotLib
+- PyInquirer
