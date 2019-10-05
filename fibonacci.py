@@ -1,5 +1,6 @@
 import time
 
+import Plotador
 from CommandLineInterface import Cli
 from Resultado import Resultado
 from fib_recursive import Fibonacci
@@ -40,3 +41,8 @@ if __name__ == "__main__":
 
     for resultado in resultados:
         print(resultado)
+
+    plot_eixo_x = list(map(lambda o: o.n, resultados))
+    plot_eixo_y = list(map(lambda o: o.tempo_execucao, resultados))
+
+    #Plotador.plot_simples(plot_eixo_x, plot_eixo_y, resultado.algoritimo)

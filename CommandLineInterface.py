@@ -32,6 +32,7 @@ class Cli():
                 'type': 'input',
                 'name': 'inicio',
                 'message': 'Qual numero deseja?',
+                'validate': lambda val: val.isnumeric() and int(val) >=0 or 'Informe um valor numerico maior ou igual a 0'
             }
         ]
         self.perguntas_teste_range = [
@@ -39,17 +40,19 @@ class Cli():
                 'type': 'input',
                 'name': 'inicio',
                 'message': 'O ponto de inicio?',
+                'validate': lambda val: val.isnumeric() and int(val) >=0 or 'Informe um valor numerico maior ou igual a 0'
             },
             {
                 'type': 'input',
                 'name': 'fim',
                 'message': 'O ponto de fim?',
+                'validate': lambda val: val.isnumeric() and int(val) >=0 or 'Informe um valor numerico maior ou igual a 0'
             }
         ]
 
     def get_dados(self):
         respostas_1 = prompt(self.perguntas_execucao)
-        respostas_2 = prompt(self.perguntas_teste_unitario) if respostas_1['tipo_teste'] == 'Valor unitario' else prompt(perguntas_teste_range)
+        respostas_2 = prompt(self.perguntas_teste_unitario) if respostas_1['tipo_teste'] == 'Valor unitario' else prompt(self.perguntas_teste_range)
 
         ALGORITMO = respostas_1['algoritmo']
         TIPO_TESTE = respostas_1['tipo_teste']
