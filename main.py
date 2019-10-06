@@ -50,5 +50,17 @@ def modo_input_ususario():
 
     #Plotador.plot_simples(plot_eixo_x, plot_eixo_y, resultado.algoritimo)
 
+def modo_benchmark():
+    algoritmo = codigos['Iterativo + Memoization'].get_funcao_calc()
+    inicio = 400
+    fim = inicio
+    
+    resultados = executa_algoritmo('Iterativo + Memoization' ,algoritmo, inicio, fim) 
+    
+    for resultado in resultados:
+        print (resultado)
+
 if __name__ == "__main__":
-    modo_input_ususario()
+    #modo_input_ususario()
+    modo_benchmark()
+    
