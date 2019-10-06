@@ -1,4 +1,5 @@
 import time
+import sys
 
 import Plotador
 from CommandLineInterface import Cli
@@ -6,6 +7,8 @@ from Resultado import Resultado
 from fib_recursive import Fibonacci
 from fib_rec_memorization import Memorization
 from fib_iterativo_memorization import IterativoMemorization
+
+sys.setrecursionlimit(1000000000)
 
 def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
     resultados = []
@@ -29,7 +32,7 @@ codigos = {
     'Iterativo + Memoization': IterativoMemorization()
     }
 
-if __name__ == "__main__":
+def modo_input_ususario():
     parametros_execucao = Cli().get_dados()
     algoritmo = parametros_execucao[0]
     inicio = int(parametros_execucao[1])
@@ -46,3 +49,6 @@ if __name__ == "__main__":
     plot_eixo_y = list(map(lambda o: o.tempo_execucao, resultados))
 
     #Plotador.plot_simples(plot_eixo_x, plot_eixo_y, resultado.algoritimo)
+
+if __name__ == "__main__":
+    modo_input_ususario()
