@@ -2,7 +2,7 @@ import time
 import sys
 
 import Plotador
-from CommandLineInterface import Cli
+#from CommandLineInterface import Cli
 from Resultado import Resultado
 from fib_recursive import Fibonacci
 from fib_rec_memorization import Memorization
@@ -14,11 +14,11 @@ def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
     resultados = []
     
     for n in range(inicio, fim+1):
-        tempo_inicial = time.process_time_ns()
+        tempo_inicial = time.time_ns()
     
         resultado_funcao = funcao_calc(n)
 
-        tempo_final = time.process_time_ns()
+        tempo_final = time.time_ns()
 
         objeto_resultado = Resultado(tempo_inicial, tempo_final, nome_algoritmo, n, resultado_funcao)
 
@@ -52,13 +52,14 @@ def modo_input_ususario():
 
 def modo_benchmark():
     algoritmo = codigos['Iterativo + Memoization'].get_funcao_calc()
-    inicio = 400
+    inicio = 400000
     fim = inicio
     
     resultados = executa_algoritmo('Iterativo + Memoization' ,algoritmo, inicio, fim) 
     
     for resultado in resultados:
         print (resultado)
+    
 
 if __name__ == "__main__":
     #modo_input_ususario()
