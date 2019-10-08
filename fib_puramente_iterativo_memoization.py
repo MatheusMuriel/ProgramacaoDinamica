@@ -1,6 +1,6 @@
 import Memoria as memo
 
-class IterativoRecursiveMemorization():
+class IterativoMemorization():
   def __init__(self):
     LIMITE = 4000000
     TAXA_LIMPEZA = 0.7
@@ -43,14 +43,27 @@ class IterativoRecursiveMemorization():
       n_2 = self.memoria.get_lembranca(str_n2)
 
       if (n_1 == -1):
-        n_1 = self.calc_fib(n-1)
+        n_1 = self.calc_fib_it(n-1)
         self.memoria.nova_memoria(str_n1, n_1)
 
       if (n_2 == -1):
-        n_2 = self.calc_fib(n-2)
+        n_2 = self.calc_fib_it(n-2)
         self.memoria.nova_memoria(str_n2, n_2)
       
       return n_1 + n_2
+
+  def calc_fib_it(self, n):
+    if (n <= 2):
+      return 1
+
+    fib1 = 1
+    fib2 = 1
+    for i in range(2, n+1):
+      fib3 = fib1 + fib2
+      fib1 = fib2
+      fib2 = fib3
+
+    return fib1
 
   def get_funcao_calc(self):
       return lambda n: self.calcular(n)

@@ -6,9 +6,10 @@ import Plotador
 from Resultado import Resultado
 from fib_recursive import Fibonacci
 from fib_rec_memorization import Memorization
-from fib_iterativo_memorization import IterativoMemorization
+from fib_iterativo_memorization import IterativoRecursiveMemorization
+from fib_puramente_iterativo_memoization import IterativoMemorization
 
-sys.setrecursionlimit(1000000000)
+#sys.setrecursionlimit(1000000000)
 
 def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
     resultados = []
@@ -29,7 +30,8 @@ def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
 codigos = {
     'Recursivo puro': Fibonacci(), 
     'Recursivo + Memoization': Memorization(), 
-    'Iterativo + Memoization': IterativoMemorization()
+    'Iterativo + Recursivo + Memoization': IterativoRecursiveMemorization(),
+    'Iterativo puro + Memoization': IterativoMemorization()
     }
 
 def modo_input_ususario():
@@ -51,11 +53,11 @@ def modo_input_ususario():
     #Plotador.plot_simples(plot_eixo_x, plot_eixo_y, resultado.algoritimo)
 
 def modo_benchmark():
-    algoritmo = codigos['Iterativo + Memoization'].get_funcao_calc()
+    algoritmo = codigos['Iterativo puro + Memoization'].get_funcao_calc()
     inicio = 400000
     fim = inicio
     
-    resultados = executa_algoritmo('Iterativo + Memoization' ,algoritmo, inicio, fim) 
+    resultados = executa_algoritmo('Iterativo puro + Memoization', algoritmo, inicio, fim) 
     
     for resultado in resultados:
         print (resultado)
