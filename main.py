@@ -10,6 +10,15 @@ from fib_iterativo_memorization import IterativoRecursiveMemorization
 from fib_puramente_iterativo_memoization import IterativoMemorization
 
 #sys.setrecursionlimit(1000000000)
+def executa_algoritmo_bench(nome_algoritmo, funcao_calc, valor):
+
+    tempo_inicial = time.time_ns()
+
+    resultado_funcao = funcao_calc(valor)
+
+    tempo_final = time.time_ns()
+
+    return Resultado(tempo_inicial, tempo_final, nome_algoritmo, valor, resultado_funcao)
 
 def executa_algoritmo(nome_algoritmo, funcao_calc, inicio, fim):
     resultados = []
@@ -55,12 +64,10 @@ def modo_input_ususario():
 def modo_benchmark():
     algoritmo = codigos['Iterativo puro + Memoization'].get_funcao_calc()
     inicio = 400000
-    fim = inicio
     
-    resultados = executa_algoritmo('Iterativo puro + Memoization', algoritmo, inicio, fim) 
+    resultado = executa_algoritmo_bench('Iterativo puro + Memoization', algoritmo, inicio) 
     
-    for resultado in resultados:
-        print (resultado)
+    print (resultado)
     
 
 if __name__ == "__main__":
