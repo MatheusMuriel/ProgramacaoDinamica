@@ -1,6 +1,7 @@
 import sys
 
 from Memoria import Cerebro
+#sys.setrecursionlimit(1000000000)
 
 class Memorization():
   def __init__(self):
@@ -30,5 +31,5 @@ class Memorization():
   def get_funcao_calc(self):
     return lambda n: self.calc(n)
 
-  def get_funcao_reset(self):
-    return lambda: self.reset()
+  def __str__(self):
+    return "Recursivo + Memoization"

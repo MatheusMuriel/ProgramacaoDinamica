@@ -1,5 +1,7 @@
 import Memoria as memo
 
+#sys.setrecursionlimit(1000000000)
+
 class IterativoRecursiveMemorization():
   def __init__(self):
     LIMITE = 4000000
@@ -55,5 +57,5 @@ class IterativoRecursiveMemorization():
   def get_funcao_calc(self):
       return lambda n: self.calcular(n)
 
-  def get_funcao_reset(self):
-      return lambda: self.reset()
+  def __str__(self):
+    return 'Iterativo + Recursivo + Memoization'

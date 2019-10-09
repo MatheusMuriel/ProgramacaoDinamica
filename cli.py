@@ -1,7 +1,3 @@
-
-testes = []
-algoritmos = []
-
 PRETO = "\033[1;30m"
 VERMELHO = "\033[1;31m"
 VERDE = "	\033[1;32m"
@@ -22,15 +18,18 @@ NEGRITO = "\033[;1m"
 INVERTE = "\033[;7m"
 RESET = "\033[0;0m"
 
+testes = []
+algoritmo = []
+
 perguntas = {
-    "testes" : "Qual tipo de execução deseja testar?",
-    "algoritmos" : "Qual algoritmo deseja testar?",
+    #"testes" : "Qual tipo de execução deseja testar?",
+    "algoritmo" : "Qual algoritmo deseja testar?",
     "valor" : "Qual numero deseja?"
 }
 
 opcoes = {
-    "testes" : testes,
-    "algoritmos" : algoritmos
+    #"testes" : testes,
+    "algoritmo" : algoritmo
 }
 
 cores_prints = {
@@ -39,9 +38,9 @@ cores_prints = {
     "opcao" : VERMELHO
 }
 
-def setar_opcoes(testes, algoritmos):
-    opcoes["testes"] = testes
-    opcoes["algoritmos"] = algoritmos
+def setar_opcoes(testes, algoritmo):
+    #opcoes["testes"] = testes
+    opcoes["algoritmo"] = algoritmo
     
 
 def get_respostas():
@@ -55,6 +54,23 @@ def get_respostas():
                 str_opcao = "{}{}{} - {}".format(cores_prints["opcao"], ops_pergunta.index(opcao), RESET, str(opcao))
                 print(str_opcao)
         
-        resposta = input(cores_prints["resposta"] + "> ")
-        respostas[pergunta] = resposta
-    print(respostas)
+        resposta_valida = False
+        while (not resposta_valida):
+            resposta = input(cores_prints["resposta"] + "> ")
+            resposta_valida = valida_resposta(pergunta, resposta)
+
+        resposta = int(resposta)
+        respostas[pergunta] = opcoes[pergunta][resposta] if pergunta in opcoes else resposta
+        print(RESET)
+
+    return respostas
+
+def valida_resposta(pergunta, resposta):
+    if resposta.isnumeric():
+        if pergunta in opcoes:
+            if int(resposta) < len(opcoes[pergunta]):
+                return True
+        else:
+            return True
+    print(VERMELHO,"Opção invalida.",RESET)
+    return False

@@ -68,5 +68,5 @@ class IterativoMemorization():
   def get_funcao_calc(self):
       return lambda n: self.calcular(n)
 
-  def get_funcao_reset(self):
-      return lambda: self.reset()
+  def __str__(self):
+    return "Iterativo puro + Memoization"
