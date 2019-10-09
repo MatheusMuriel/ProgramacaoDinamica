@@ -41,6 +41,9 @@ def modo_input_ususario():
 
     for resultado in resultados:
         print(resultado)
+    
+    detalhes_execucao = "\nFib({})\nAlgoritmo :: {}".format(valor, algoritmo)
+    print(detalhes_execucao)
 
     #plot_eixo_x = list(map(lambda o: o.n, resultados))
     #plot_eixo_y = list(map(lambda o: o.tempo_execucao, resultados))
